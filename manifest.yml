@@ -1,0 +1,10 @@
+applications:
+- name: Guest Book Demo
+  framework: node
+  runtime: node10
+  memory: 64M
+  instances: 1
+  command: node app.js #The command to use to start the application
+  host: guestbookdemo
+  domain: ng.bluemix.net
+  path: .
