@@ -1,7 +1,14 @@
 {
   "version":"1.0.0",
   "scripts":{"start":"node app.js"},
-  "dependencies":{"mongodb":"*"},
+  "dependencies": {
+   	"mongodb":"*",
+    "express": "3.x",
+    "underscore" : "1.6.x",
+    "request" : "2.x",
+    "moment" : "2.x"
+  },
+
   "name":"GuestBook",
   "description":"Bluemix Guest Book Demo"
 }
