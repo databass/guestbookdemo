@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <link href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
+      <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+      <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+      <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+      <link rel="stylesheet" href="css/guestbook.css">
+      <meta charset=utf-8 />
+      <title>Computational Patterning Guestbook</title>
+   </head>
+   <body>
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+      <script src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+      <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+      <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+      <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
+      <!-- Latest compiled and minified JavaScript -->
+      <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+      <script src="js/guestbook.js"></script>
+
+      <section id="GuestbookHeaderContainer">
+         <h2>Welcome to the Computational Patterning Guestbook 	<button style="margin-left: 2em;" class='btn btn-success' id="SignGuestbook">Sign the Guestbook</button></h2>
+
+      </section>
+      <section id="GuestbookContainer">    </section>
+  
+
+      <div class="modal" id="myPostModal">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                  <h4 class="modal-title">Sign the Computational Patterning Guestbook</h4>
+               </div>
+               <div class="modal-body">
+                  <label>Name</label>
+                  <input type="text" size="10" value="" id="guestName"></input>
+                  <label>Message</label>
+                  <input type="text" size="60" value="" id="messageText"></input>
+                  <label>Favorite Keyword</label>
+                  <input type="text" size="10" value="" id="favoriteKeyword"></input>
+               </div>
+               <div class="modal-footer">
+                  <button type='button' id="PostMessage" class='btn btn-success' data-dismiss="modal" >Sign the Guestbook</button>
+                  <button type='button' class='btn btn-cancel' data-dismiss="modal" >Never Mind</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="modal fade" id="myThanksModal">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                  <h4 class="modal-title">Thank you!</h4>
+               </div>
+               <div class="modal-body">
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <div class="modal fade" id="myDeleteConfirmModal">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                  <h4 class="modal-title">Confirm</h4>
+               </div>
+               <div class="modal-body">Are you sure you want to delete this guestbook entry?
+               </div>
+
+               <div class="modal-footer">
+                  <button type='button' id="DeleteMessage" class='btn btn-success' data-dismiss="modal" >Yes, go ahead.</button>
+                  <button type='button' class='btn btn-warning' data-dismiss="modal" >Whoops.</button>
+               </div>
+            </div>
+         </div>
+      </div>
+
+
+      <div class="modal fade" id="myDeleteModal">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                  <h4 class="modal-title">Your guestbook entry has been deleted!</h4>
+               </div>
+               <div class="modal-body">
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <div class="modal" id="myErrorModal">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                  <h4 class="error modal-title">Error</h4>
+               </div>
+               <div class="modal-body">
+               </div>
+               <div class="modal-footer">
+                  <button type='button' class='btn btn-danger' data-dismiss="modal" >Close</button>
+               </div>
+            </div>
+         </div>
+      </div>
+
+   </body>
+   <script id="GuestbookTemplate" type="text/template">
+      <table id="GuestbookTable" style="text-align: center; width:80%">	
+      	<thead>
+      	<tr>
+
+      	<th>Name</th>
+      	<th>Message</th>
+      	<th>Favorite Keyword</th>
+      	<th>Date and Time (UTC)</th>
+	<th></th>
+      	</tr>
+      	</thead>
+      	<tbody>
+         <% _.each(messages, function(messageItem) { %> 
+      
+      	<tr>
+
+      		<td><%= messageItem.guestName %></td>
+      		<td><%= messageItem.messageText %></td>
+      		<td><a title="View keyword documentation for <%= messageItem.favoriteKeyword %>" href="http://dpdoc.ibm.com/index.html#/keyword/<%= messageItem.favoriteKeyword %>" target="_blank"><%= messageItem.favoriteKeyword %></a></td>
+      		<td><%= moment(messageItem.ts).utc().format("MM/DD/YYYY HH:mm") %></td>
+		<td><span style="cursor:pointer" data-id="<%= messageItem._id %>" class="deleteEntry glyphicon glyphicon-trash"></span></td>
+
+      	</tr>
+        	 <% }); %>
+      	</tbody>
+      </table>
+   </script>
+   <script>
+      $(document).ready(function() {
+      
+      	
+      	GB.init();
+      
+      });
+   </script>
+</html>
