@@ -1,0 +1,198 @@
+/* guestbook.css */
+
+
+html {
+    height: 100%;
+}
+
+body {
+
+	
+}
+
+#main {
+	
+	height: auto;
+
+}
+
+
+
+
+header {
+	height: 80px;
+	display: block;
+	/*background: linear-gradient(#EEEEFF, #CCCCFF);*/
+	background-color: white;
+	width: 100%;
+	margin: 10px 0 10px 0;
+	padding: 0;
+	border-color: midnightblue;
+	border-style: solid;
+	border-width: 0 0 1px 0;
+}
+
+label {
+	margin-top: .5em;
+	display: block;
+}
+
+#GuestbookTable thead tr th {
+	text-align: center;
+}
+
+
+#InitialContainer {
+	margin-top: 3em;
+	text-align: center;
+}
+
+
+
+#InitialContainer p {
+	margin-top: 1.5em;
+	font-size: 1.5em;
+}
+
+#InitialContainer .note {
+	font-weight: 700;
+
+}
+
+
+
+
+
+
+#GuestbookHeaderContainer {
+	margin-left: auto !important;
+	margin-right: auto !important;
+	margin-top: 1em !important;
+	text-align: center;
+
+}
+
+#GuestbookContainer {
+	margin-left: auto !important;
+	margin-right: auto !important;
+	margin-top: 1em !important;
+	text-align: center;
+}
+
+
+
+#GuestbookTable, #ChartContainer {
+	width: 100%;	
+	text-align: center;
+	border-width: 1px 1px 1px 1px;
+	margin-top: 1em;
+	border-style: solid;
+	border-color: midnightblue;
+
+}
+
+.chartHeader {
+
+	display: none;
+}
+
+
+
+
+#GridContainer {
+	border-width: 1px 0 0 0;
+	border-color: midnightblue;
+	border-style: solid;
+
+	width: 100%;
+	padding: .5em;	
+	display: none;
+}
+
+#GridContainer h1 {
+	text-align: center;
+}
+
+
+
+
+
+.dataTables_filter {
+    text-align: right !important;
+	font-size: .9em;
+	margin-bottom: .5em !important;
+
+	padding-right: 3% !important;
+    
+}
+
+
+
+#ReposGrid_info, #CommitsGrid_info {
+	display: none;
+	
+}
+
+
+.error {
+	color: red;	
+}
+
+p.error {
+	font-size: 1.2em;
+	color: black;	
+}
+
+.verticalTop {
+	
+	vertical-align: top;
+}
+
+.bold {
+	
+	font-weight: 700;
+}
+
+.left {
+	text-align: left;
+}
+
+.center {
+	text-align: center;
+}
+.right {
+	text-align: right;
+}
+
+
+text {
+	
+	font-size: 11px !important;
+}
+
+
+
+/* modals */
+
+
+
+
+
+#myErrorModal .modal-body, #myWaitModal .modal-body, #myDeleteModal .modal-body, #myDeleteConfirmModal .modal-body {
+	font-size: 1.2em;
+}
+
+
+
+
+/* bootstrap override */
+.modal-dialog {
+    top: 180px;
+}
+
+​
+
+
+
+
+
