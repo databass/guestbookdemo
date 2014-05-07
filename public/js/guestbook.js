@@ -78,6 +78,8 @@ var GB = (function () {
 
         "deleteMessage": function (messageId) {
 
+            var that = this;
+
             $('#myDeleteConfirmModal').modal({
                 show: false
             });
@@ -100,7 +102,9 @@ var GB = (function () {
         },
 
         "postMessage": function (guestName, messageText, favoriteKeyword) {
-
+         
+            var that = this;
+            
             $.getJSON("/postmessage/" + messageText + "/" + guestName + "/" + favoriteKeyword, function (data) {
 
                 $('#myPostModal').modal({
